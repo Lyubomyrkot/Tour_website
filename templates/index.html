@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Site</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Підключаємо зовнішній CSS файл -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+    <!-- НАВІГАЦІЯ -->
+    {% include 'nav.html' %}
+
+
+    <!-- СЛАЙДЕР -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='image/slide2.jpg') }}" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='image/slide3.jpg') }}" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='image/slide4.jpg') }}" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='image/slide5.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
+
+    {% include 'countries_card.html' %}
+
+    <div>
+        <h2 class="ture-name">Популярні тури</h2>
+        <div class="ture-container">
+            <div class="ture-card">
+                <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="Country 1">
+                <div class="country-name">Італія</div>
+                <a href="#" class="country-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" fill="none" stroke-width="2">
+                        <path d="M5 12h14"></path>
+                        <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                </a>
+            </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='slider.js') }}"></script>
+
+</body>
+</html>

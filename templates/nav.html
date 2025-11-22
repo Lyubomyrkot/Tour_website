@@ -1,0 +1,37 @@
+<header class="navbar">
+    <div class="nav-left">
+        <!-- Логотип -->
+        <a href="/">
+            <img src="{{ url_for('static', filename='image/logo.png') }}" alt="logo" class="logo"/>
+        </a>
+
+        <nav class="nav-links" aria-label="Головна навігація">
+            <a href="#">ТУРИ</a>
+            <a href="{{ url_for('countries') }}">КРАЇНИ</a>
+            <a href="#">ПРОЖИВАННЯ</a>
+            <a href="#">КОНТАКТИ</a>
+            <a href="#">ПРО НАС</a>
+        </nav>
+    </div>
+
+
+    <div class="nav-right">
+        <div class="search-box" role="search">
+            <input type="search" placeholder="Знайти..." aria-label="Пошук">
+            <button class="search-btn" aria-label="Пошук">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+
+        <button class="profile-btn" aria-label="Профіль">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M5.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"></path>
+            </svg>
+        </button>
+    </div>
+</header>
