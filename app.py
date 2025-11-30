@@ -3,9 +3,19 @@ import sqlite3
 
 app = Flask(__name__) # Створюємо веб–додаток Flask
 
+def get_all_countries():
+    conn = sqlite3.connect('templates/ture.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute(''' SELECT * FROM countries ''')
+    countries = cursor.fetchall()
+    conn.close()
+    return countries
+
 @app.route("/") # Вказуємо url-адресу для виклику функції
 def index():
-    return render_template("index.html") #Результат, що повертається у браузер
+    countries = get_all_countries()
+    return render_template("index.html", countries=countries) #Результат, що повертається у браузер
 
 @app.route("/countries") # Вказуємо url-адресу для виклику функції
 def countries():
