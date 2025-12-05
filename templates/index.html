@@ -45,7 +45,7 @@
                 {% for country in countries %}
                 <div class="country-card">
                     {% if country.image %}
-                        <img src="{{ url_for('static', filename='image/' + country.image) }}" alt="Country 1">
+                        <img src="{{ url_for('static', filename='image/country/' + country.image) }}" alt="Country 1">
                     {% else %}
                         <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
                     {% endif %}
@@ -62,22 +62,39 @@
         </div>
     </div>
 
-    <div>
-        <h2 class="ture-name">Популярні тури</h2>
-        <div class="ture-container">
-            <div class="ture-card">
-                <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="Country 1">
-                <div class="country-name">Італія</div>
-                <a href="#" class="country-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" fill="none" stroke-width="2">
-                        <path d="M5 12h14"></path>
-                        <path d="M13 6l6 6-6 6"></path>
-                    </svg>
-                </a>
+    <h2 class="tour-name">Популярні тури</h2>
+    <div class="tour-container">
+        {% for country_in_tour in countries_in_tours %}
+        <div class="tour-card">
+            <div class="tour-image">
+                {% if country_in_tour.image %}
+                    <img src="{{ url_for('static', filename='image/country/' + country_in_tour.image) }}" alt="Country 1">
+                {% else %}
+                    <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
+                {% endif %}
+                <div class="tour-tags">
+                    <div class="tag"><span>🛫</span>{{country_in_tour.start_date}}</div>
+                    <div class="tag"><span>🌙</span>{{country_in_tour.duration_days}}</div>
+                    <!-- <div class="tag"><span>👤</span> 2</div> -->
+                </div>
             </div>
-    </div>
+              
+            <div class="tour-info">
+                <!-- питаня не виводиться столиця -->
+                <p class="tour-location">{{country_in_tour.country_name}}, {{country_in_tour.capital}}</p>
+                <h3 class="tour-title">{{country_in_tour.tour_name}}</h3>
+                <div class="bottom-row">
+                    <div class="stars">★4</div>
+                    <div class="price">{{country_in_tour.price}}€</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
 
 
+
+        
+        
 
 
 
