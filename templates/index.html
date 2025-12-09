@@ -68,14 +68,13 @@
         <div class="tour-card">
             <div class="tour-image">
                 {% if country_in_tour.image %}
-                    <img src="{{ url_for('static', filename='image/country/' + country_in_tour.image) }}" alt="Country 1">
+                    <img src="{{ url_for('static', filename='image/tours/' + country_in_tour.image) }}" alt="Country 1">
                 {% else %}
                     <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
                 {% endif %}
                 <div class="tour-tags">
                     <div class="tag"><span>🛫</span>{{country_in_tour.start_date}}</div>
                     <div class="tag"><span>🌙</span>{{country_in_tour.duration_days}}</div>
-                    <!-- <div class="tag"><span>👤</span> 2</div> -->
                 </div>
             </div>
               

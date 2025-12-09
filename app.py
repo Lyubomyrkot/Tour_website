@@ -20,7 +20,7 @@ def get_all_tours():
     countries = cursor.fetchall()
     conn.close()
     return countries
-
+# mongoDB
 def get_all_countries_in_tours():
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
