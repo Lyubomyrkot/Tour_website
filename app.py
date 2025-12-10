@@ -20,7 +20,9 @@ def get_all_tours():
     countries = cursor.fetchall()
     conn.close()
     return countries
-# mongoDB
+
+# mongoDB максим рекомандував до вивчання
+
 def get_all_countries_in_tours():
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -45,6 +47,17 @@ def index():
 @app.route("/countries") # Вказуємо url-адресу для виклику функції
 def countries():
     return render_template("countries.html") #Результат, що повертається у браузер
+
+@app.route("/tours/<int:tour_id>") # Вказуємо url-адресу для виклику функції
+def tour_details(tour_id):
+    conn = sqlite3.connect('templates/ture.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute(''' SELECT * FROM tours WHERE id = ? ''', (tour_id,))
+    tour = cursor.fetchone()
+    conn.close()
+    return render_template("tour_details.html", tour=tour) #Результат, що повертається у браузер
+
 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True # Вмикаємо режим налагодження

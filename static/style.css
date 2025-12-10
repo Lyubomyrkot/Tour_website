@@ -4,6 +4,10 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 /* Навігація */
 .navbar{
@@ -278,6 +282,7 @@ body{
 /* Текст */
 .tour-info {
     padding: 15px;
+    
 }
 
 .tour-location {
@@ -309,3 +314,6 @@ body{
     font-weight: 700;
     color: #2a6df4;
 }
+
+
+/* стилі для турів */

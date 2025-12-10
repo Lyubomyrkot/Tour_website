@@ -65,29 +65,31 @@
     <h2 class="tour-name">Популярні тури</h2>
     <div class="tour-container">
         {% for country_in_tour in countries_in_tours %}
-        <div class="tour-card">
-            <div class="tour-image">
-                {% if country_in_tour.image %}
-                    <img src="{{ url_for('static', filename='image/tours/' + country_in_tour.image) }}" alt="Country 1">
-                {% else %}
-                    <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
-                {% endif %}
-                <div class="tour-tags">
-                    <div class="tag"><span>🛫</span>{{country_in_tour.start_date}}</div>
-                    <div class="tag"><span>🌙</span>{{country_in_tour.duration_days}}</div>
+        <a href="{{url_for('tour_details', tour_id=country_in_tour.id)}}" class="tour-link">
+            <div class="tour-card">
+                <div class="tour-image">
+                    {% if country_in_tour.image %}
+                        <img src="{{ url_for('static', filename='image/tours/' + country_in_tour.image) }}" alt="Country 1">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
+                    {% endif %}
+                    <div class="tour-tags">
+                        <div class="tag"><span>🛫</span>{{country_in_tour.start_date}}</div>
+                        <div class="tag"><span>🌙</span>{{country_in_tour.duration_days}}</div>
+                    </div>
+                </div>
+                
+                <div class="tour-info">
+                    <!-- питаня не виводиться столиця -->
+                    <p class="tour-location">{{country_in_tour.country_name}}, {{country_in_tour.capital}}</p>
+                    <h3 class="tour-title">{{country_in_tour.tour_name}}</h3>
+                    <div class="bottom-row">
+                        <div class="stars">★4</div>
+                        <div class="price">{{country_in_tour.price}}€</div>
+                    </div>
                 </div>
             </div>
-              
-            <div class="tour-info">
-                <!-- питаня не виводиться столиця -->
-                <p class="tour-location">{{country_in_tour.country_name}}, {{country_in_tour.capital}}</p>
-                <h3 class="tour-title">{{country_in_tour.tour_name}}</h3>
-                <div class="bottom-row">
-                    <div class="stars">★4</div>
-                    <div class="price">{{country_in_tour.price}}€</div>
-                </div>
-            </div>
-        </div>
+        </a>
         {% endfor %}
 
 
