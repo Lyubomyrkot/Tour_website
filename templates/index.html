@@ -42,21 +42,21 @@
         <div class="container">
             <h2>Популярні країни</h2>
             <div class="countries-container">
-                {% for country in countries %}
-                <div class="country-card">
-                    {% if country.image %}
-                        <img src="{{ url_for('static', filename='image/country/' + country.image) }}" alt="Country 1">
-                    {% else %}
-                        <img src="{{ url_for('static', filename='image/greece.jpg') }}" alt="No Image Available">
-                    {% endif %}
-                    <div class="country-name">{{ country.country_name }}</div>
-                    <a href="#" class="country-btn">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" fill="none" stroke-width="2">
-                            <path d="M5 12h14"></path>
-                            <path d="M13 6l6 6-6 6"></path>
-                        </svg>
-                    </a>
-                </div>
+                {% for country_in_tour in countries_in_tours %}
+                    <div class="country-card">
+                        {% if country_in_tour.image %}
+                            <img src="{{ url_for('static', filename='image/country/' + country_in_tour.country_image) }}" alt="Country 1">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='image/country/greece.jpg') }}" alt="No Image Available">
+                        {% endif %}
+                        <div class="country-name">{{ country_in_tour.country_name }}</div>
+                        <a href="{{url_for('countries_details', country_id=country_in_tour.id)}}" class="country-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" fill="none" stroke-width="2">
+                                <path d="M5 12h14"></path>
+                                <path d="M13 6l6 6-6 6"></path>
+                            </svg>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>

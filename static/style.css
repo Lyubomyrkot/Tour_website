@@ -317,3 +317,8 @@ a {
 
 
 /* стилі для турів */
+.head_image{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}

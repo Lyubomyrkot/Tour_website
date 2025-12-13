@@ -12,6 +12,9 @@
 <body>
     <!-- НАВІГАЦІЯ -->
     {% include 'nav.html' %}
-    <!-- СЛАЙДЕР -->
-    {% include 'countries_card.html' %}
+
+    <div class="country-page">
+        <img class="head_image" src="{{ url_for('static', filename='image/country/' + country.image) }}" alt="">
+    </div>
+
 </body>
