@@ -15,8 +15,51 @@
     <!-- НАВІГАЦІЯ -->
     {% include 'nav.html' %}
 
-    <div class="tour-page">
+    <div class="hero">
         <img class="head_image" src="{{ url_for('static', filename='image/tours/' + tour.image) }}" alt="">
+        <button class="hero-btn">Детальніше ↓</button>
+    </div>
+
+    <div class="content">
+
+        <section class="hotels">
+            <h2>Готелі</h2>
+
+            <div class="hotels-layout">
+                <div class="hotel-card">
+                    <img class="head_image" src="{{ url_for('static', filename='image/tours/' + tour.image) }}" alt="">
+                </div>
+
+                <div class="tour-details">
+                    <h3>Деталі туру</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="cities">
+            <h2>МІСТА</h2>
+
+            <div class="cities-flow">
+                <div class="city">
+                    <img class="head_image" src="{{ url_for('static', filename='image/tours/' + tour.image) }}" alt="">
+                    <span>Лос-Анджелес</span>
+                </div>
+
+                <span class="arrow">→</span>
+
+                <div class="city">
+                    <img class="head_image" src="{{ url_for('static', filename='image/tours/' + tour.image) }}" alt="">
+                    <span>Нью-Йорк</span>
+                </div>
+
+                <span class="arrow">→</span>
+
+                <div class="city">
+                    <img class="head_image" src="{{ url_for('static', filename='image/tours/' + tour.image) }}" alt="">
+                    <span>Лос-Анджелес</span>
+                </div>
+            </div>
+        </section>
     </div>
 
 

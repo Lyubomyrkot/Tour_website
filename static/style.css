@@ -322,3 +322,100 @@ a {
     height: 400px;
     object-fit: cover;
 }
+
+.hero {
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+}
+
+.hero-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 24px;
+    background: #8ec1b5;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.content {
+    padding: 40px;
+    margin: 0;
+    padding: 50px 100px;
+}
+
+/* HOTELS */
+.hotels h2 {
+    margin-bottom: 15px;
+}
+
+.hotels-layout {
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+    padding-left: 50px;
+    padding-right: 50px;
+    gap: 400px;
+}
+
+.hotel-card {
+    background: #6ea69a;
+    border-radius: 20px;
+    overflow: hidden;
+    
+    height: 450px;
+}
+
+.hotel-card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+.tour-details {
+    background: #efefef;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+/* CITIES */
+.cities {
+    background: #efefef;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.cities h2 {
+    margin-bottom: 20px;
+}
+
+.cities-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.city {
+    text-align: center;
+}
+
+.city img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.arrow {
+    font-size: 24px;
+}
