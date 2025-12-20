@@ -7,3 +7,13 @@ const swiper = new Swiper(".mySwiper", {
     speed: 600
 });
 
+const heroMosaicSwiper = new Swiper(".heroMosaicSwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 40,
+    grabCursor: true,
+    speed: 700,
+    loop: true,
+});
+
+
+

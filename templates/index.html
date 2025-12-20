@@ -50,7 +50,7 @@
                             <img src="{{ url_for('static', filename='image/country/greece.jpg') }}" alt="No Image Available">
                         {% endif %}
                         <div class="country-name">{{ country_in_tour.country_name }}</div>
-                        <a href="{{url_for('countries_details', country_id=country_in_tour.id)}}" class="country-btn">
+                        <a href="{{url_for('countries_details', country_id=country_in_tour.country_id)}}" class="country-btn">
                             <svg viewBox="0 0 24 24" width="20" height="20" stroke="white" fill="none" stroke-width="2">
                                 <path d="M5 12h14"></path>
                                 <path d="M13 6l6 6-6 6"></path>

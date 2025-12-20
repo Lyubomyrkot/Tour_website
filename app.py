@@ -28,7 +28,7 @@ def get_all_countries_in_tours():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     cursor.execute("""
-                    SELECT tours.*, countries.country_name, countries.capital, countries.image AS country_image
+                    SELECT tours.*, countries.country_name, countries.capital, countries.image AS country_image, countries_in_tours.*
                     FROM tours
                     JOIN countries_in_tours ON tours.id = countries_in_tours.tour_id
                     JOIN countries ON countries_in_tours.country_id = countries.id
