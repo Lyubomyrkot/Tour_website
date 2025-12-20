@@ -22,68 +22,44 @@
     <section class="hero-mosaic">
         <div class="swiper heroMosaicSwiper">
             <div class="swiper-wrapper">
+                {% set images = tour['image_for_toure'] %}
+                {% if images %}
+                    {% set img_list = images.split(';') %}
 
-                <!-- GROUP 1 -->
-                <div class="swiper-slide mosaic-slide">
-                    <div class="mosaic-grid">
-                        <div class="mosaic-vertical">
-                            <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h1">
-                            <img src="{{ url_for('static', filename='image/slide2.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h2">
-                            <img src="{{ url_for('static', filename='image/slide3.jpg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
+                    {% for i in range(0, img_list|length, 3) %}
+                        <div class="swiper-slide mosaic-slide">
+                            <div class="mosaic-grid">
 
-                <!-- GROUP 2 -->
-                <div class="swiper-slide mosaic-slide">
-                    <div class="mosaic-grid">
-                        <div class="mosaic-vertical">
-                           <img src="{{ url_for('static', filename='image/slide4.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h1">
-                            <img src="{{ url_for('static', filename='image/slide5.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h2">
-                            <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
+                                {% if img_list|length > i %}
+                                <div class="mosaic-vertical">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_tour/' ~ img_list[i].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
 
-                <!-- GROUP 1 -->
-                <div class="swiper-slide mosaic-slide">
-                    <div class="mosaic-grid">
-                        <div class="mosaic-vertical">
-                            <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h1">
-                            <img src="{{ url_for('static', filename='image/slide2.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h2">
-                            <img src="{{ url_for('static', filename='image/slide3.jpg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
+                                {% if img_list|length > i+1 %}
+                                <div class="mosaic-horizontal h1">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_tour/' ~ img_list[i+1].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
 
-                <!-- GROUP 2 -->
-                <div class="swiper-slide mosaic-slide">
-                    <div class="mosaic-grid">
-                        <div class="mosaic-vertical">
-                           <img src="{{ url_for('static', filename='image/slide4.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h1">
-                            <img src="{{ url_for('static', filename='image/slide5.jpg') }}" alt="">
-                        </div>
-                        <div class="mosaic-horizontal h2">
-                            <img src="{{ url_for('static', filename='image/slide1.jpg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
+                                {% if img_list|length > i+2 %}
+                                <div class="mosaic-horizontal h2">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_tour/' ~ img_list[i+2].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
 
-
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Немає фото</p>
+                {% endif %}
             </div>
         </div>
     </section>

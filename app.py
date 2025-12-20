@@ -67,6 +67,7 @@ def tour_details(tour_id):
     return render_template("tour_details.html", tour=tour) #Результат, що повертається у браузер
 
 
+
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True # Вмикаємо режим налагодження
     app.run(debug=True) # Запускаємо веб-сервер з цього файлу
