@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 import sqlite3
+import os
 
 app = Flask(__name__) # Створюємо веб–додаток Flask
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'mysecretkey')
 
 def get_all_countries():
     conn = sqlite3.connect('templates/ture.db')
