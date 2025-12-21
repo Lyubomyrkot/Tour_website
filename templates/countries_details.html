@@ -13,8 +13,51 @@
     <!-- НАВІГАЦІЯ -->
     {% include 'nav.html' %}
 
-    <div class="country-page">
-        <img class="head_image" src="{{ url_for('static', filename='image/country/' + country.image) }}" alt="">
-    </div>
+    <section class="hero-mosaic">
+        <div class="swiper countryMosaicSwiper">
+            <div class="swiper-wrapper">
+                {% set images = country['image_for_country'] %}
+                {% if images %}
+                    {% set img_list = images.split(';') %}
 
+                    {% for i in range(0, img_list|length, 3) %}
+                        <div class="swiper-slide mosaic-slide">
+                            <div class="mosaic-grid">
+
+                                {% if img_list|length > i %}
+                                <div class="mosaic-vertical">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_country/' ~ img_list[i].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
+
+                                {% if img_list|length > i+1 %}
+                                <div class="mosaic-horizontal h1">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_country/' ~ img_list[i+1].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
+
+                                {% if img_list|length > i+2 %}
+                                <div class="mosaic-horizontal h2">
+                                    <img src="{{ url_for('static',
+                                        filename='image/about_country/' ~ img_list[i+2].strip()
+                                    ) }}" alt="">
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Немає фото</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ url_for('static', filename='slider.js') }}"></script>
 </body>

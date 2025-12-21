@@ -327,6 +327,11 @@ a {
     overflow: hidden;
 }
 
+.countryMosaicSwiper {
+    padding: 0 40px;
+    overflow: hidden;
+}
+
 /* один слайд = одна група */
 .mosaic-slide {
     width: auto;
@@ -372,6 +377,16 @@ a {
     opacity: 1 !important;
 }
 
+.countryMosaicSwiper .swiper-slide {
+    flex-shrink: 1 !important;
+}
+.countryMosaicSwiper .swiper-slide,
+.countryMosaicSwiper .swiper-slide-active,
+.countryMosaicSwiper .swiper-slide-next,
+.countryMosaicSwiper .swiper-slide-prev {
+    transform: none !important;
+    opacity: 1 !important;
+}
 
 
 .content {
