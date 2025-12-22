@@ -39,6 +39,32 @@ def get_all_countries_in_tours():
     conn.close()
     return countries_in_tours
 
+def get_tours_by_country(country_id):
+    conn = sqlite3.connect('templates/ture.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT 
+            tours.*,
+            countries.country_name,
+            countries.capital
+        FROM tours
+        JOIN countries_in_tours 
+            ON tours.id = countries_in_tours.tour_id
+        JOIN countries 
+            ON countries.id = countries_in_tours.country_id
+        WHERE countries.id = ?
+    """, (country_id,))
+
+    tours = cursor.fetchall()
+    conn.close()
+    return tours
+
+
+
+
+
 @app.route("/") # Вказуємо url-адресу для виклику функції
 def index():
     countries = get_all_countries()
@@ -54,7 +80,10 @@ def countries_details(country_id):
     cursor.execute(''' SELECT * FROM countries WHERE id = ? ''', (country_id,))
     country = cursor.fetchone()
     conn.close()
-    return render_template("countries_details.html", country=country) #Результат, що повертається у браузер
+
+    tours = get_tours_by_country(country_id)
+
+    return render_template("countries_details.html", country=country, tours=tours) #Результат, що повертається у браузер
 
 @app.route("/tours/<int:tour_id>") # Вказуємо url-адресу для виклику функції
 def tour_details(tour_id):

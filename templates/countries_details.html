@@ -57,6 +57,45 @@
             </div>
         </div>
     </section>
+
+
+    <h2 class="tour-name">Тури {{ country.country_name }}</h2>
+
+    <div class="tour-container">
+    {% for country_in_tour in tours %}
+        <a href="{{ url_for('tour_details', tour_id=country_in_tour.id) }}" class="tour-link">
+            <div class="tour-card">
+                <div class="tour-image">
+                    {% if country_in_tour.image %}
+                        <img src="{{ url_for('static', filename='image/tours/' + country_in_tour.image) }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='image/greece.jpg') }}">
+                    {% endif %}
+
+                    <div class="tour-tags">
+                        <div class="tag">🛫 {{ country_in_tour.start_date }}</div>
+                        <div class="tag">🌙 {{ country_in_tour.duration_days }}</div>
+                    </div>
+                </div>
+
+                <div class="tour-info">
+                    <p class="tour-location">
+                        {{ country_in_tour.country_name }}, {{ country_in_tour.capital }}
+                    </p>
+
+                    <h3 class="tour-title">{{ country_in_tour.tour_name }}</h3>
+
+                    <div class="bottom-row">
+                        <div class="stars">★4</div>
+                        <div class="price">{{ country_in_tour.price }}€</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+
+
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ url_for('static', filename='slider.js') }}"></script>
