@@ -702,3 +702,22 @@ a {
     font-size: 32px;
     color: #9ca3af;
 }
+
+.tour-page {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* Ліва колонка */
+.left-column {
+    width: 35%;
+}
+
+/* Права колонка */
+.right-column {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

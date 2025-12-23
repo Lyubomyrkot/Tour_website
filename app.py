@@ -77,6 +77,28 @@ def get_reviews_by_tour(tour_id):
     conn.close()
     return reviews
 
+def get_cities_by_tour(tour_id):
+    conn = sqlite3.connect('templates/ture.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            cities.city_name,
+            cities.description,
+            cities.duration_days,
+            cities.image,
+            cities_in_tour.id AS day_order
+        FROM cities_in_tour
+        JOIN cities ON cities.id = cities_in_tour.city_id
+        WHERE cities_in_tour.tour_id = ?
+        ORDER BY cities_in_tour.id
+    """, (tour_id,))
+
+    cities = cursor.fetchall()
+    conn.close()
+    return cities
+
 
 
 
@@ -108,8 +130,9 @@ def tour_details(tour_id):
     cursor.execute(''' SELECT * FROM tours WHERE id = ? ''', (tour_id,))
     tour = cursor.fetchone()
     reviews = get_reviews_by_tour(tour_id)
+    cities = get_cities_by_tour(tour_id)
     conn.close()
-    return render_template("tour_details.html", tour=tour, reviews=reviews) #Результат, що повертається у браузер
+    return render_template("tour_details.html", tour=tour, reviews=reviews, cities=cities) #Результат, що повертається у браузер
 
 
 
