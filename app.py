@@ -88,16 +88,17 @@ def get_cities_by_tour(tour_id):
             cities.description,
             cities.duration_days,
             cities.image,
-            cities_in_tour.id AS day_order
+            cities_in_tour.day_order
         FROM cities_in_tour
         JOIN cities ON cities.id = cities_in_tour.city_id
         WHERE cities_in_tour.tour_id = ?
-        ORDER BY cities_in_tour.id
+        ORDER BY cities_in_tour.day_order
     """, (tour_id,))
 
     cities = cursor.fetchall()
     conn.close()
     return cities
+
 
 
 

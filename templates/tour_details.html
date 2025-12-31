@@ -64,132 +64,135 @@
 
 
     <div class="tour-page">
-        <div class="left-column">
-            <section class="tour-cities">
+        <div class="tour-top">
 
-                <h2 class="section-title">Міста туру</h2>
+            <div class="left-column">
+                <section class="tour-cities">
 
-                <div class="cities-route">
+                    <h2 class="section-title">Міста туру</h2>
 
-                    {% for city in cities %}
-                    <div class="city-item">
+                    <div class="cities-route">
+                        
 
-                        <div class="city-image">
-                            <img src="{{ url_for('static', filename='image/' + city.image) }}" alt="{{ city.city_name }}">
 
-                            <span class="city-day">
-                                День {{ city.day_order }}
-                            </span>
+                        {% for city in cities %}
+                        <div class="city-item">
+
+                            <div class="city-image">
+                                <img src="{{ url_for('static', filename='image/city/' + city.image) }}" alt="{{ city.city_name }}">
+
+                                <span class="city-day">
+                                    День {{ city.day_order }}
+                                </span>
+                            </div>
+
+                            <div class="city-info">
+                                <h3>{{ city.city_name }}</h3>
+                                <p>{{ city.description }}</p>
+                            </div>
+
                         </div>
+                        {% endfor %}
+                        
+                    </div>
+                    <button class="show-more-btn" id="showCitiesBtn">
+                        Показати всі міста
+                    </button>
+                </section>
+            </div>
 
-                        <div class="city-info">
-                            <h3>{{ city.city_name }}</h3>
-                            <p>{{ city.description }}</p>
-                        </div>
+            <div class="right-column">
+                <aside class="tour-details-card">
 
+                    <h3 class="card-title">Деталі туру</h3>
+
+                    <ul class="tour-info">
+                        <li>
+                            <span>Дата вильоту</span>
+                            <b>{{ tour.start_date }}</b>
+                        </li>
+
+                        <li>
+                            <span>Дата повернення</span>
+                            <b>{{ tour.end_date }}</b>
+                        </li>
+
+                        <li>
+                            <span>Кількість днів</span>
+                            <b>{{ tour.duration_days }}</b>
+                        </li>
+                    </ul>
+
+                    <div class="tour-price">
+                        від <span>{{ tour.price }} $</span>
                     </div>
 
-                    {% if not loop.last %}
-                        <div class="route-arrow">➜</div>
-                    {% endif %}
+                    <button class="comment-btn">
+                        Забронювати місце
+                    </button>
+
+                </aside>
+            </div>
+        </div>
+
+        <section class="reviews">
+
+            <div class="reviews-header">
+                <h3>Відгуки про тур</h3>
+                <span class="reviews-count">
+                    {{ reviews|length }} відгуків
+                </span>
+            </div>
+
+            {% if reviews %}
+                <div class="reviews-list">
+
+                    {% for review in reviews %}
+                    <div class="review-card"  {% if loop.index > 2 %}style="display: none;"{% endif %}>
+
+                        <div class="review-top">
+                            <div class="review-user">
+                                <div class="avatar">
+                                    {{ review.user_name[0] }}
+                                </div>
+                                <div>
+                                    <b>{{ review.user_name }}</b>
+                                    <div class="review-date">
+                                        {{ review.review_date }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stars">
+                                {% for i in range(review.rating) %}
+                                    ★
+                                {% endfor %}
+                                {% for i in range(5 - review.rating) %}
+                                    ☆
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <p class="review-text">
+                            {{ review.comment }}
+                        </p>
+
+                    </div>
                     {% endfor %}
 
                 </div>
 
-            </section>
-        </div>
+                <a href="#" class="all-reviews-link">
+                    Показати всі відгуки →
+                </a>
 
-        <div class="right-column">
-            <aside class="tour-details-card">
+            {% else %}
+                <p class="no-reviews">
+                    Поки що відгуків немає. Будь першим 🙂
+                </p>
+            {% endif %}
 
-                <h3 class="card-title">Деталі туру</h3>
-
-                <ul class="tour-info">
-                    <li>
-                        <span>Дата вильоту</span>
-                        <b>{{ tour.start_date }}</b>
-                    </li>
-
-                    <li>
-                        <span>Дата повернення</span>
-                        <b>{{ tour.end_date }}</b>
-                    </li>
-
-                    <li>
-                        <span>Кількість днів</span>
-                        <b>{{ tour.duration_days }}</b>
-                    </li>
-                </ul>
-
-                <div class="tour-price">
-                    від <span>{{ tour.price }} $</span>
-                </div>
-
-                <button class="comment-btn">
-                    Забронювати місце
-                </button>
-
-            </aside>
-
-            <section class="reviews">
-
-                <div class="reviews-header">
-                    <h3>Відгуки про тур</h3>
-                    <span class="reviews-count">
-                        {{ reviews|length }} відгуків
-                    </span>
-                </div>
-
-                {% if reviews %}
-                    <div class="reviews-list">
-
-                        {% for review in reviews %}
-                        <div class="review-card"  {% if loop.index > 2 %}style="display: none;"{% endif %}>
-
-                            <div class="review-top">
-                                <div class="review-user">
-                                    <div class="avatar">
-                                        {{ review.user_name[0] }}
-                                    </div>
-                                    <div>
-                                        <b>{{ review.user_name }}</b>
-                                        <div class="review-date">
-                                            {{ review.review_date }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="stars">
-                                    {% for i in range(review.rating) %}
-                                        ★
-                                    {% endfor %}
-                                    {% for i in range(5 - review.rating) %}
-                                        ☆
-                                    {% endfor %}
-                                </div>
-                            </div>
-
-                            <p class="review-text">
-                                {{ review.comment }}
-                            </p>
-
-                        </div>
-                        {% endfor %}
-
-                    </div>
-
-                    <a href="#" class="all-reviews-link">
-                        Показати всі відгуки →
-                    </a>
-
-                {% else %}
-                    <p class="no-reviews">
-                        Поки що відгуків немає. Будь першим 🙂
-                    </p>
-                {% endif %}
-
-            </section>
-        </div>
+        </section>
     </div>
 
 

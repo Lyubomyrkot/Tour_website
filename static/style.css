@@ -468,6 +468,7 @@ a {
     background: #ffffff;
     border-radius: 20px;
     padding: 24px;
+    margin-top: 30px;
     width: 100%;
     max-width: 360px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -537,6 +538,7 @@ a {
     border-radius: 20px;
     padding: 24px;
     margin-top: 30px;
+    width: 100%;
 }
 
 /* заголовок */
@@ -634,6 +636,8 @@ a {
     border-radius: 20px;
     padding: 28px;
     margin-top: 30px;
+    max-width: 560px;
+    align-self: stretch;
 }
 
 .section-title {
@@ -644,11 +648,27 @@ a {
 /* маршрут */
 .cities-route {
     display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+
+    max-height: 420px;
+    overflow: hidden;
 }
 
+.show-more-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.show-more-btn:hover {
+    opacity: 0.9;
+}
 /* місто */
 .city-item {
     display: flex;
@@ -656,6 +676,7 @@ a {
     max-width: 420px;
     background: #f7f8fb;
     padding: 16px;
+    padding-right: 130px;
     border-radius: 18px;
 }
 
@@ -704,20 +725,29 @@ a {
 }
 
 .tour-page {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
 }
+
 
 /* Ліва колонка */
 .left-column {
-    width: 35%;
+    width: 65%;
+
 }
 
 /* Права колонка */
 .right-column {
-    width: 65%;
+    width: 35%;
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
+
+.tour-top {
+    display: flex;
+    gap: 24px;
+    /* align-items: stretch; */
+}
+
