@@ -751,3 +751,96 @@ a {
     /* align-items: stretch; */
 }
 
+/* ================== Додати відгук ================== */
+.add-review {
+    background: #ffffff; /* світлий чистий фон */
+    padding: 25px 30px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s;
+}
+
+.add-review:hover {
+    transform: translateY(-2px);
+}
+
+.add-review h4 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #222;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.add-review .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-review label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 15px;
+}
+
+.add-review input[type="text"],
+.add-review textarea,
+.add-review select {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    font-size: 15px;
+    resize: none;
+    transition: all 0.4s ease;
+    background-color: #fefefe;
+    background-clip: padding-box;
+}
+
+.add-review input[type="text"]:focus,
+.add-review textarea:focus,
+.add-review select:focus {
+    outline: none;
+    border-width: 2px;
+    border-style: solid;
+    border-image-source: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-image-slice: 1;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    transition: all 0.4s ease; /* щоб тінь і бордер плавно змінювались */
+}
+
+
+
+.add-review textarea {
+    min-height: 100px;
+}
+
+.add-review .submit-review {
+    background: linear-gradient(135deg, #3b82f6, #2563eb); /* новий градієнт */
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px; /* круглі краї */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    margin: 0 auto; /* центрування */
+}
+
+.add-review .submit-review:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8); /* темніший на hover */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+}
+

@@ -144,6 +144,34 @@
                 </span>
             </div>
 
+            <!-- Форма для додавання нового відгуку -->
+            <div class="add-review">
+                <h4>Додати свій відгук</h4>
+                <form method="POST" action="{{ url_for('tour_details', tour_id=tour.id) }}">
+                    <input type="text" name="user_name" placeholder="Ваше ім'я" required>
+                    <select name="rating" required>
+                        <option value="5">5 – Відмінно</option>
+                        <option value="4">4 – Добре</option>
+                        <option value="3">3 – Нормально</option>
+                        <option value="2">2 – Погано</option>
+                        <option value="1">1 – Дуже погано</option>
+                    </select>
+                    <textarea name="comment" placeholder="Ваш відгук" required></textarea>
+                    <div style="text-align: center;"> <!-- контейнер для центрування -->
+                        <button type="submit" class="submit-review">
+                            <span>Додати відгук</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 24 24">
+                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                            </svg>
+                        </button>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+
             {% if reviews %}
                 <div class="reviews-list">
 

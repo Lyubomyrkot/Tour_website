@@ -123,17 +123,48 @@ def countries_details(country_id):
 
     return render_template("countries_details.html", country=country, tours=tours) #Результат, що повертається у браузер
 
-@app.route("/tours/<int:tour_id>") # Вказуємо url-адресу для виклику функції
+@app.route("/tours/<int:tour_id>", methods=['POST', 'GET'])
 def tour_details(tour_id):
+    if request.method == 'POST':
+        user_name = request.form.get('user_name')
+        rating = request.form.get('rating')
+        comment = request.form.get('comment')
+        if user_name and rating and comment:
+            add_review_to_db(tour_id, user_name, int(rating), comment)
+
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    cursor.execute(''' SELECT * FROM tours WHERE id = ? ''', (tour_id,))
+
+    # Тур
+    cursor.execute("SELECT * FROM tours WHERE id = ?", (tour_id,))
     tour = cursor.fetchone()
-    reviews = get_reviews_by_tour(tour_id)
-    cities = get_cities_by_tour(tour_id)
+
+    # Відгуки
+    cursor.execute("SELECT * FROM reviews WHERE tour_id = ? ORDER BY review_date DESC", (tour_id,))
+    reviews = cursor.fetchall()
+
+    # Міста туру
+    cursor.execute("""
+        SELECT c.* FROM cities c
+        JOIN cities_in_tour ct ON c.id = ct.city_id
+        WHERE ct.tour_id = ?
+    """, (tour_id,))
+    cities = cursor.fetchall()
+
     conn.close()
-    return render_template("tour_details.html", tour=tour, reviews=reviews, cities=cities) #Результат, що повертається у браузер
+
+    return render_template("tour_details.html", tour=tour, reviews=reviews, cities=cities)
+
+def add_review_to_db(tour_id, user_name, rating, comment):
+    conn = sqlite3.connect("templates/ture.db")  # Підключаємось до бази
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO reviews (tour_id, user_name, rating, comment, review_date)
+        VALUES (?, ?, ?, ?, DATE('now'))
+    ''', (tour_id, user_name, rating, comment))
+    conn.commit()
+    conn.close()
 
 
 
