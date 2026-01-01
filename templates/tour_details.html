@@ -127,9 +127,13 @@
                         від <span>{{ tour.price }} $</span>
                     </div>
 
-                    <button class="comment-btn">
-                        Забронювати місце
-                    </button>
+                    <form method="post">
+                        <input type="hidden" name="book_tour" value="1">
+                        <button type="submit" class="comment-btn">
+                            Забронювати місце
+                        </button>
+                    </form>
+
 
                 </aside>
             </div>

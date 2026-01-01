@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request 
 import sqlite3
 import os
 
@@ -126,6 +126,19 @@ def countries_details(country_id):
 @app.route("/tours/<int:tour_id>", methods=['POST', 'GET'])
 def tour_details(tour_id):
     if request.method == 'POST':
+        # 🟢 БРОНЮВАННЯ (окремо)
+        if request.form.get('book_tour'):
+            conn = sqlite3.connect('templates/ture.db')
+            conn.execute("PRAGMA foreign_keys = ON")
+            cursor = conn.cursor()
+
+            cursor.execute("""
+                INSERT INTO bookings (tour_id)
+                VALUES (?)
+            """, (tour_id,))
+
+            conn.commit()
+            conn.close()
         user_name = request.form.get('user_name')
         rating = request.form.get('rating')
         comment = request.form.get('comment')
