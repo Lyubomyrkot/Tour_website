@@ -146,9 +146,13 @@ def tour_details(tour_id):
 
     # Міста туру
     cursor.execute("""
-        SELECT c.* FROM cities c
+       SELECT 
+            c.*,
+            ct.day_order
+        FROM cities c
         JOIN cities_in_tour ct ON c.id = ct.city_id
         WHERE ct.tour_id = ?
+        ORDER BY ct.day_order
     """, (tour_id,))
     cities = cursor.fetchall()
 

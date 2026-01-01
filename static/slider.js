@@ -54,4 +54,3 @@ if (citiesBtn && cities) {
         citiesBtn.style.display = "none";
     });
 }
-
