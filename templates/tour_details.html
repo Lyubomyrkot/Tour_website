@@ -15,6 +15,7 @@
     <!-- НАВІГАЦІЯ -->
     {% include 'nav.html' %}
 
+    <!-- Слайдер туру -->
     <section class="hero-mosaic">
         <div class="swiper heroMosaicSwiper">
             <div class="swiper-wrapper">
@@ -60,40 +61,29 @@
         </div>
     </section>
 
-
-
-
+    <!-- Опис туру -->
     <div class="tour-page">
         <div class="tour-top">
-
+            <!-- Ліва колонка -->
             <div class="left-column">
                 <section class="tour-cities">
-
+                    <!-- Міста туру -->
                     <h2 class="section-title">Міста туру</h2>
-
                     <div class="cities-route">
-                        
-
-
                         {% for city in cities %}
                         <div class="city-item">
-
                             <div class="city-image">
                                 <img src="{{ url_for('static', filename='image/city/' + city.image) }}" alt="{{ city.city_name }}">
-
                                 <span class="city-day">
                                     День {{ city.day_order }}
                                 </span>
                             </div>
-
                             <div class="city-info">
                                 <h3>{{ city.city_name }}</h3>
                                 <p>{{ city.description }}</p>
                             </div>
-
                         </div>
                         {% endfor %}
-                        
                     </div>
                     <button class="show-more-btn" id="showCitiesBtn">
                         Показати всі міста
@@ -101,53 +91,46 @@
                 </section>
             </div>
 
+            <!-- Права колонка -->
             <div class="right-column">
                 <aside class="tour-details-card">
-
+                    <!-- Деталі туру -->
                     <h3 class="card-title">Деталі туру</h3>
-
                     <ul class="tour-info">
                         <li>
                             <span>Дата вильоту</span>
                             <b>{{ tour.start_date }}</b>
                         </li>
-
                         <li>
                             <span>Дата повернення</span>
                             <b>{{ tour.end_date }}</b>
                         </li>
-
                         <li>
                             <span>Кількість днів</span>
                             <b>{{ tour.duration_days }}</b>
                         </li>
                     </ul>
-
                     <div class="tour-price">
                         від <span>{{ tour.price }} $</span>
                     </div>
-
                     <form method="post">
                         <input type="hidden" name="book_tour" value="1">
                         <button type="submit" class="comment-btn">
                             Забронювати місце
                         </button>
                     </form>
-
-
                 </aside>
             </div>
         </div>
 
+        <!-- Відгуки про тур -->
         <section class="reviews">
-
             <div class="reviews-header">
                 <h3>Відгуки про тур</h3>
                 <span class="reviews-count">
                     {{ reviews|length }} відгуків
                 </span>
             </div>
-
             <!-- Форма для додавання нового відгуку -->
             <div class="add-review">
                 <h4>Додати свій відгук</h4>
@@ -169,19 +152,14 @@
                             </svg>
                         </button>
                     </div>
-
-
                 </form>
             </div>
 
-
-
+            <!-- Список відгуків -->
             {% if reviews %}
                 <div class="reviews-list">
-
                     {% for review in reviews %}
                     <div class="review-card"  {% if loop.index > 2 %}style="display: none;"{% endif %}>
-
                         <div class="review-top">
                             <div class="review-user">
                                 <div class="avatar">
@@ -194,7 +172,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="stars">
                                 {% for i in range(review.rating) %}
                                     ★
@@ -204,30 +181,22 @@
                                 {% endfor %}
                             </div>
                         </div>
-
                         <p class="review-text">
                             {{ review.comment }}
                         </p>
-
                     </div>
                     {% endfor %}
-
                 </div>
-
                 <a href="#" class="all-reviews-link">
                     Показати всі відгуки →
                 </a>
-
             {% else %}
                 <p class="no-reviews">
-                    Поки що відгуків немає. Будь першим 🙂
+                    Поки що відгуків немає. Будь першим!
                 </p>
             {% endif %}
-
         </section>
     </div>
-
-
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ url_for('static', filename='slider.js') }}"></script>

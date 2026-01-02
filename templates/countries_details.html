@@ -13,6 +13,7 @@
     <!-- НАВІГАЦІЯ -->
     {% include 'nav.html' %}
 
+    <!-- Слайдер країни -->
     <section class="hero-mosaic">
         <div class="swiper countryMosaicSwiper">
             <div class="swiper-wrapper">
@@ -58,9 +59,8 @@
         </div>
     </section>
 
-
+    <!-- Тури країни -->
     <h2 class="tour-name">Тури {{ country.country_name }}</h2>
-
     <div class="tour-container">
     {% for country_in_tour in tours %}
         <a href="{{ url_for('tour_details', tour_id=country_in_tour.id) }}" class="tour-link">

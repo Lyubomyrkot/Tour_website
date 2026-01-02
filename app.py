@@ -1,3 +1,4 @@
+# mongoDB максим рекомандував до вивчання
 from flask import Flask, render_template, request 
 import sqlite3
 import os
@@ -5,6 +6,12 @@ import os
 app = Flask(__name__) # Створюємо веб–додаток Flask
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'mysecretkey')
 
+
+# --------------------------------------------------
+# Функції для отримання даних з бази даних
+# --------------------------------------------------
+
+# Отримати всі країни
 def get_all_countries():
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -14,6 +21,7 @@ def get_all_countries():
     conn.close()
     return countries
 
+# Отримати всі тури
 def get_all_tours():
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -23,8 +31,7 @@ def get_all_tours():
     conn.close()
     return countries
 
-# mongoDB максим рекомандував до вивчання
-
+# Отримати всі країни в турах
 def get_all_countries_in_tours():
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -39,6 +46,7 @@ def get_all_countries_in_tours():
     conn.close()
     return countries_in_tours
 
+# Отримати тури за країною
 def get_tours_by_country(country_id):
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -61,6 +69,7 @@ def get_tours_by_country(country_id):
     conn.close()
     return tours
 
+# Отримати відгуки за туром
 def get_reviews_by_tour(tour_id):
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -77,6 +86,7 @@ def get_reviews_by_tour(tour_id):
     conn.close()
     return reviews
 
+# Отримати міста за туром
 def get_cities_by_tour(tour_id):
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
@@ -100,9 +110,11 @@ def get_cities_by_tour(tour_id):
     return cities
 
 
+# --------------------------------------------------
+# Маршрути веб-додатку
+# --------------------------------------------------
 
-
-
+# Головна сторінка
 @app.route("/") # Вказуємо url-адресу для виклику функції
 def index():
     countries = get_all_countries()
@@ -110,6 +122,7 @@ def index():
     countries_in_tours = get_all_countries_in_tours()
     return render_template("index.html", countries_in_tours=countries_in_tours, countries=countries, tours=tours, ) #Результат, що повертається у браузер
 
+# Сторінка з деталями країни
 @app.route("/countries/<int:country_id>") # Вказуємо url-адресу для виклику функції
 def countries_details(country_id):
     conn = sqlite3.connect('templates/ture.db')
@@ -123,10 +136,11 @@ def countries_details(country_id):
 
     return render_template("countries_details.html", country=country, tours=tours) #Результат, що повертається у браузер
 
+# Сторінка з деталями туру
 @app.route("/tours/<int:tour_id>", methods=['POST', 'GET'])
 def tour_details(tour_id):
     if request.method == 'POST':
-        # 🟢 БРОНЮВАННЯ (окремо)
+        # Бронювання туру
         if request.form.get('book_tour'):
             conn = sqlite3.connect('templates/ture.db')
             conn.execute("PRAGMA foreign_keys = ON")
@@ -144,16 +158,16 @@ def tour_details(tour_id):
         comment = request.form.get('comment')
         if user_name and rating and comment:
             add_review_to_db(tour_id, user_name, int(rating), comment)
-
+            
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    # Тур
+    # Деталі туру
     cursor.execute("SELECT * FROM tours WHERE id = ?", (tour_id,))
     tour = cursor.fetchone()
 
-    # Відгуки
+    # Відгуки туру
     cursor.execute("SELECT * FROM reviews WHERE tour_id = ? ORDER BY review_date DESC", (tour_id,))
     reviews = cursor.fetchall()
 
@@ -168,11 +182,10 @@ def tour_details(tour_id):
         ORDER BY ct.day_order
     """, (tour_id,))
     cities = cursor.fetchall()
-
     conn.close()
-
     return render_template("tour_details.html", tour=tour, reviews=reviews, cities=cities)
 
+# Додати відгук до бази даних
 def add_review_to_db(tour_id, user_name, rating, comment):
     conn = sqlite3.connect("templates/ture.db")  # Підключаємось до бази
     cursor = conn.cursor()
@@ -184,7 +197,7 @@ def add_review_to_db(tour_id, user_name, rating, comment):
     conn.close()
 
 
-
+# Запуск веб-сервера
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True # Вмикаємо режим налагодження
     app.run(debug=True) # Запускаємо веб-сервер з цього файлу

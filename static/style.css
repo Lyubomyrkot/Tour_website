@@ -1,3 +1,7 @@
+/*  */
+/* СТИЛІ ДЛЯ ВСЬОГО САЙТУ */
+/*  */
+
 body{
     background-color: #56887C;
     margin:0;
@@ -9,7 +13,11 @@ a {
     color: inherit;
 }
 
-/* Навігація */
+
+/*  */
+/* НАВІГАЦІЯ */
+/*  */
+
 .navbar{
     width: 100%;
     display: flex;
@@ -88,15 +96,17 @@ a {
     padding-right: 35px;
 }
 
-/* Слайдер */
+/*  */
+/* СЛАЙДЕР ГОЛОВНОЇ СТОРІНКИ */
+/*  */
+
 .mySwiper {
     width: 100%;
     padding: 40px 0;
     background-color: #538478;
 }
-
 .swiper-slide {
-    width: 1240px !important;   /* розміри */
+    width: 1240px !important;/* розміри */
     height: 520px !important;
 
     display: flex;
@@ -107,8 +117,8 @@ a {
 }
 
 .swiper-slide img {
-    width: 100%;            /* фото 1240 */
-    height: 100%;           /* фото 520 */
+    width: 100%;/* фото 1240 */
+    height: 100%;/* фото 520 */
     object-fit: cover;
     border-radius: 20px;
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -127,8 +137,10 @@ a {
     opacity: 0.8;
 }
 
+/*  */
+/* Розділ КРАЇНИ */
+/*  */
 
-/* Країни */
 .countries-section{
     width: 100%;
     padding: 40px 0;
@@ -159,17 +171,12 @@ a {
     position: relative; /* важливо для absolute всередині */
 }
 
-/* .country-card:hover {
-    transform: scale(1.01);
-} */
-
 .country-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Назва країни поверх картинки */
 .country-name {
     position: absolute;
     bottom: 10px; /* відступ від низу */
@@ -181,22 +188,17 @@ a {
 }
 
 .country-btn{
-    /* background-color: #699b8e; */
     position: absolute;
     right: 10px;
     bottom: 10px;
-
     width: 40px;
     height: 40px;
-
     background: rgba(0,0,0,0.5);
     backdrop-filter: blur(3px);
-
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-
     transition: 0.3s ease;
 
 }
@@ -206,20 +208,16 @@ a {
     transform: scale(1.1);
 }
 
+/*  */
+/* Розділ ТУРИ */
+/*  */
 
-
-
-
-
-
-/* Карточк турів */
 .tour-container{
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
 }
-
 
 .tour-card {
     width: 360px;
@@ -259,7 +257,6 @@ a {
     margin-bottom: 30px;
 }
 
-/* Прозорі блоки на фото */
 .tour-tags {
     position: absolute;
     bottom: 15px;
@@ -316,7 +313,10 @@ a {
 }
 
 
-/* стилі для турів */
+/*  */
+/* Розділ СЛАЙДЕР */
+/*  */
+
 .hero-mosaic {
     padding: 30px 0;
     background: #538478;
@@ -332,12 +332,11 @@ a {
     overflow: hidden;
 }
 
-/* один слайд = одна група */
+/* один слайд - одна група */
 .mosaic-slide {
     width: auto;
 }
 
-/* сітка */
 .mosaic-grid {
     display: grid;
     grid-template-columns: 380px 580px;
@@ -395,74 +394,15 @@ a {
     padding: 50px 100px;
 }
 
-/* HOTELS */
-.hotels h2 {
-    margin-bottom: 15px;
-}
-
-.hotels-layout {
-    display: grid;
-
-    grid-template-columns: 1.5fr 1fr;
-    padding-left: 50px;
-    padding-right: 50px;
-    gap: 400px;
-}
-
-.hotel-card {
-    background: #6ea69a;
-    border-radius: 20px;
-    overflow: hidden;
-    
-    height: 450px;
-}
-
-.hotel-card img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-}
+/*  */
+/* СТИЛІ ДЕТАЛІВ ТУРУ */
+/*  */
 
 .tour-details {
     background: #efefef;
     border-radius: 20px;
     padding: 20px;
 }
-
-/* CITIES */
-/* .cities {
-    background: #efefef;
-    margin-top: 50px;
-    padding: 30px;
-    border-radius: 25px;
-}
-
-.cities h2 {
-    margin-bottom: 20px;
-}
-
-.cities-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-}
-
-.city {
-    text-align: center;
-}
-
-.city img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.arrow {
-    font-size: 24px;
-} */
-
 
 .tour-details-card {
     background: #ffffff;
@@ -480,7 +420,6 @@ a {
     font-weight: 600;
 }
 
-/* список */
 .tour-info {
     list-style: none;
     padding: 0;
@@ -503,7 +442,6 @@ a {
     font-weight: 600;
 }
 
-/* ціна */
 .tour-price {
     margin: 20px 0;
     font-size: 18px;
@@ -515,7 +453,6 @@ a {
     color: #22c55e;
 }
 
-/* кнопка */
 .comment-btn {
     width: 100%;
     padding: 12px;
@@ -532,7 +469,6 @@ a {
     opacity: 0.9;
 }
 
-
 .reviews {
     background: #ffffff;
     border-radius: 20px;
@@ -541,7 +477,6 @@ a {
     width: 100%;
 }
 
-/* заголовок */
 .reviews-header {
     display: flex;
     justify-content: space-between;
@@ -558,21 +493,18 @@ a {
     font-size: 14px;
 }
 
-/* список */
 .reviews-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* картка */
 .review-card {
     background: #f7f8fb;
     border-radius: 16px;
     padding: 16px;
 }
 
-/* верх */
 .review-top {
     display: flex;
     justify-content: space-between;
@@ -645,7 +577,6 @@ a {
     margin-bottom: 24px;
 }
 
-/* маршрут */
 .cities-route {
     display: flex;
     flex-direction: column;
@@ -669,6 +600,7 @@ a {
 .show-more-btn:hover {
     opacity: 0.9;
 }
+
 /* місто */
 .city-item {
     display: flex;
@@ -751,7 +683,10 @@ a {
     /* align-items: stretch; */
 }
 
-/* ================== Додати відгук ================== */
+/*  */
+/* ФОРМА ДОДАННЯ ВІДГУКУ */
+/*  */
+
 .add-review {
     background: #ffffff; /* світлий чистий фон */
     padding: 25px 30px;

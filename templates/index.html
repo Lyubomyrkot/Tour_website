@@ -62,6 +62,7 @@
         </div>
     </div>
 
+    <!-- ПОПУЛЯРНІ ТУРИ -->
     <h2 class="tour-name">Популярні тури</h2>
     <div class="tour-container">
         {% for country_in_tour in countries_in_tours %}
@@ -78,9 +79,8 @@
                         <div class="tag"><span>🌙</span>{{country_in_tour.duration_days}}</div>
                     </div>
                 </div>
-                
+
                 <div class="tour-info">
-                    <!-- питаня не виводиться столиця -->
                     <p class="tour-location">{{country_in_tour.country_name}}, {{country_in_tour.capital}}</p>
                     <h3 class="tour-title">{{country_in_tour.tour_name}}</h3>
                     <div class="bottom-row">
@@ -91,22 +91,6 @@
             </div>
         </a>
         {% endfor %}
-
-
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
