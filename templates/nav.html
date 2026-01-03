@@ -6,9 +6,28 @@
         </a>
 
         <nav class="nav-links" aria-label="Головна навігація">
-            <a href="#">ТУРИ</a>
-            <a href="#">КРАЇНИ</a>
-            <a href="#">ПРОЖИВАННЯ</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">ТУРИ</a>
+                <div class="dropdown-menu">
+                    {% for tour in tours %}
+                        <a href="{{ url_for('tour_details', tour_id=tour.id) }}">
+                            {{ tour.tour_name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link">КРАЇНИ</a>
+                <div class="dropdown-menu">
+                    {% for country in countries %}
+                        <a href="{{ url_for('countries_details', country_id=country.id) }}">
+                            {{ country.country_name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- <a href="#">ПРОЖИВАННЯ</a> -->
             <a href="#">КОНТАКТИ</a>
             <a href="#">ПРО НАС</a>
         </nav>

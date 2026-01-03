@@ -27,9 +27,9 @@ def get_all_tours():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     cursor.execute(''' SELECT * FROM tours ''')
-    countries = cursor.fetchall()
+    tours = cursor.fetchall()
     conn.close()
-    return countries
+    return tours
 
 # Отримати всі країни в турах
 def get_all_countries_in_tours():
@@ -120,7 +120,7 @@ def index():
     countries = get_all_countries()
     tours = get_all_tours()
     countries_in_tours = get_all_countries_in_tours()
-    return render_template("index.html", countries_in_tours=countries_in_tours, countries=countries, tours=tours, ) #Результат, що повертається у браузер
+    return render_template("index.html", countries_in_tours=countries_in_tours, countries=countries, tours=tours) #Результат, що повертається у браузер
 
 # Сторінка з деталями країни
 @app.route("/countries/<int:country_id>") # Вказуємо url-адресу для виклику функції
@@ -158,7 +158,7 @@ def tour_details(tour_id):
         comment = request.form.get('comment')
         if user_name and rating and comment:
             add_review_to_db(tour_id, user_name, int(rating), comment)
-            
+
     conn = sqlite3.connect('templates/ture.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()

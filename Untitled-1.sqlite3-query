@@ -1,0 +1,81 @@
+-- database: ./templates/ture.db
+
+CREATE TABLE countries(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_name TEXT NOT NULL,
+    capital TEXT NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT NOT NULL,
+    best_time_to_visit TEXT NOT NULL
+);
+
+CREATE TABLE tours(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tour_name TEXT NOT NULL,
+    duration_days TEXT NOT NULL,
+    start_date TEXT NOT NULL,
+    end_date TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT NOT NULL,
+    rating REAL NOT NULL DEFAULT 0.0
+);
+
+CREATE TABLE cities(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    city_name TEXT NOT NULL,
+    duration_days TEXT NOT NULL,
+    description TEXT,
+    country_id INTEGER REFERENCES countries(id)
+);
+
+CREATE TABLE residences(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    city_id INTEGER REFERENCES cities(id),
+    residence_name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    address TEXT NOT NULL,
+    price_for_night INTEGER NOT NULL,
+    image TEXT NOT NULL
+);
+
+-- CREATE TABLE users(
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     username TEXT NOT NULL UNIQUE,
+--     email TEXT NOT NULL UNIQUE,
+--     password_hash TEXT NOT NULL
+-- );
+
+-- таблиця для відгуків
+CREATE TABLE reviews(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tour_id INTEGER REFERENCES tours(id),
+    user_name TEXT NOT NULL,
+    rating INTEGER NOT NULL,
+    comment TEXT,
+    review_date TEXT NOT NULL
+);
+
+-- таблиця для бронювань
+CREATE TABLE bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tour_id INTEGER NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (tour_id) REFERENCES tours(id)
+);
+
+
+-- Таблиця міст
+CREATE TABLE cities_in_tour(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tour_id INTEGER REFERENCES tours(id),
+    city_id INTEGER REFERENCES cities(id)
+);
+
+-- таблиця країн
+CREATE TABLE countries_in_tours(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tour_id INTEGER REFERENCES tours(id),
+    country_id INTEGER REFERENCES countries(id)
+);
